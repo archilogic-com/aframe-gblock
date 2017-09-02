@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+node_modules
+**/.DS_Store
+.DS_Store
+.idea
+.idea/**

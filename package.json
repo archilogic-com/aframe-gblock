@@ -1,0 +1,16 @@
+{
+  "name": "aframe-gblock",
+  "description": "Aframe component loading google blocks content (inofficial)",
+  "repository": "tomas-polach/aframe-gblock",
+  "private": true,
+  "scripts": {
+    "dev": "rollup -c tasks/rollup.config.js --watch& lite-server -c tasks/lite-server.config.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lite-server": "^2.3.0",
+    "rollup": "^0.49.2",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  }
+}
