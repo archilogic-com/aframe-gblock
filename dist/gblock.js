@@ -18,8 +18,8 @@
 	    var json = JSON.parse(convertUint8ArrayToString(data));
 	    // use base64 shaders
 	    Object.keys(json.shaders).forEach(function (key, i) {
-	      if (json.shaders[key].uri.indexOf('fs.glsl') > -1) json.shaders[key].uri = fsBase64;
-	      else if (json.shaders[key].uri.indexOf('vs.glsl') > -1) json.shaders[key].uri = vsBase64;
+	      if (key.indexOf('fragment') > -1) json.shaders[key].uri = fsBase64;
+	      else if (key.indexOf('vertex') > -1) json.shaders[key].uri = vsBase64;
 	    });
 	    // convert json to uint8
 	    var uint8array = new TextEncoder('utf-8').encode(JSON.stringify(json));
