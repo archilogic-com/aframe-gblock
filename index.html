@@ -4,18 +4,73 @@
   <meta charset="utf-8">
   <title>gBlock Component - A-Frame</title>
   <meta name="description" content="gBlock Component - A-Frame">
+
   <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
   <script src="dist/gblock.js"></script>
+
+  <style>
+    #top {
+      text-align: center;
+      z-index: 100000;
+      position: absolute;
+      top: 5px;
+      width: 100%;
+      color: black;
+      font-size: 16;
+    }
+    #visual-inspector-button {
+      z-index: 100000;
+      position: absolute;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      right: 110px;
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.3);
+    }
+    #visual-inspector-button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
 <body>
+
+<!-- 3D -->
+
 <a-scene>
+d
+  <a-entity gblock="https://vr.google.com/objects/5vbJ5vildOq" position="1.452 0 -4.549" scale="0.5 0.5 0.5" rotation="0 22 0"></a-entity>
+  <a-entity gblock="https://vr.google.com/objects/46w8bcXM21v" position="-2.146 -1.428 -5.143" scale="0.8 0.8 0.8" rotation="0 50 0"></a-entity>
+  <a-entity gblock="https://vr.google.com/objects/6XXj6DSBb08" position="-4.981 1.061 -6.411" scale="0.5 0.5 0.5" rotation="0 30 0"></a-entity>
+  <a-entity gblock="https://vr.google.com/objects/dVG0XJrpRJC" position="-7.626 -10.509 -8.452" scale="7 7 7"></a-entity>
 
-  <!-- <a-entity gblock="https://vr.google.com/objects/bb5ZisB0L9L" position="0 0 -4"></a-entity> -->
-  <a-entity gblock="https://vr.google.com/objects/5vbJ5vildOq" position="0 0 -4" scale="0.5 0.5 0.5"></a-entity>
+  <!-- this one will not work because model is not donwloadable. play fair and respect the authors decision -->
+  <a-entity gblock="https://vr.google.com/objects/bb5ZisB0L9L" position="0 -0.685 -4.812"></a-entity>
 
-  <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+  <a-plane position="-0.649 0 -6.148" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" material="" geometry="height:10;width:12"></a-plane>
 
   <a-sky color="#eee"></a-sky>
+
 </a-scene>
+
+<!-- 2D / UI -->
+
+<div id="top">
+  <a target="_blank" href="https://github.com/tomas-polach/aframe-gblock">gblock component</a> for <a href="https://aframe.io/">aframe</a> by <a href="https://3d.io">3d.io</a>. remixable models by
+  <a target="_blank" href="https://vr.google.com/objects/user/fdmGZ8QLHxA">Bruno Oliveira</a>,
+  <a target="_blank" href="https://vr.google.com/objects/46w8bcXM21v">Jerad Bitner</a>,
+  <a target="_blank" href="https://vr.google.com/objects/user/8UFiTVl7kcW">Chris Tarello</a>,
+  <a target="_blank" href="https://vr.google.com/objects/user/eW-UZX3VB0K">Vladimir Ilic</a>
+</div>
+<div id="visual-inspector-button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M31.4,20.2l-.6-4.4,2.6-1.7-2.5-3.7-2.6,1.7L24.7,9.4l.6-3-4.4-.9-.6,3-4.4.6L14.2,6.5,10.5,9l1.7,2.6L9.5,15.2l-3-.6L5.6,19l3,.6L9.2,24,6.6,25.7l2.5,3.7,2.6-1.7,3.6,2.7-.6,3,4.4.9.6-3,4.4-.6,1.7,2.6,3.7-2.5-1.7-2.6s2.6-3.5,2.7-3.6l3,.6.9-4.4ZM20,25.5A5.5,5.5,0,1,1,25.5,20,5.5,5.5,0,0,1,20,25.5Z" style="fill:#fff"/></svg>
+</div>
+<script>
+  document.querySelector('#visual-inspector-button').addEventListener('click', function(){
+    window.postMessage('INJECT_AFRAME_INSPECTOR','*')
+    document.querySelector('#visual-inspector-button').style.display = 'none'
+  })
+</script>
+
 </body>
 </html>
