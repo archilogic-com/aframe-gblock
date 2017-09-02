@@ -52,8 +52,9 @@ AFRAME.registerComponent('gblock', {
 
         self.loader.load(body, function gltfLoaded (gltfModel) {
           self.model = gltfModel.scene || gltfModel.scenes[0];
+          // FIXME: use original blocks shaders?
           self.model.traverse(function (child) {
-            if (child.material) child.material = new THREE.MeshPhongMaterial()
+            if (child.material) child.material = new THREE.MeshPhongMaterial({ vertexColors: THREE.VertexColors })
           })
           self.model.animations = gltfModel.animations;
           el.setObject3D('mesh', self.model);
