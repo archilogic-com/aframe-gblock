@@ -1,53 +1,56 @@
-# A-Frame gblock component
+# A-Frame gBlock Component
 
-gblock component for [A-Frame](https://aframe.io) loading remixable google blocks models (inofficial)
+gBlock component for [A-Frame](https://aframe.io) loading remixable [google blocks](https://vr.google.com) models. Build by [3d.io](https://3d.io).
 
 ## Demo
 
-![]()
+![](static/screenshot.jpg)
 
 #### [Live demo](https://archilogic-com.github.io/aframe-gblock/)
 
-## Basic Example
+## Usage
 
 ```html
-<a-entity gblock="https://vr.google.com/objects/dVG0XJrpRJC"></entity>
+<head>
+  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+  <script src="https://rawgit.com/archilogic-com/aframe-gblock/master/dist/gblock.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-entity gblock="https://vr.google.com/objects/dVG0XJrpRJC"></entity>
+  </a-scene>
+</body>
 ```
 
 ## Want to make changes?
 
 ### Installation
 
-First make sure you have Node installed.
+#### 1. Make sure you have Node installed.
 
 On Mac OS X, it's recommended to use [Homebrew](http://brew.sh/) to install Node + [npm](https://www.npmjs.com):
 
     brew install node
 
-To install the Node dependencies:
+#### 2. Clone git repo 
+
+    git clone https://github.com/archilogic-com/aframe-gblock.git
+
+#### 3. Install dependencies
 
     npm install
 
-
-### Local Development
-
-To serve the site from a simple Node development server:
+#### 5. Start local development server
 
     npm start
 
-Then launch the site from your favourite browser:
+#### 6. Launch site from your favourite browser:
 
-[__http://localhost:3000/__](http://localhost:3000/)
+[http://localhost:3000/](http://localhost:3000/)
 
-If you wish to serve the site from a different port:
+## Acknowledgements
 
-    PORT=8000 npm start
-
-
-## Acknowledgement
-
-Based on the work of @stemkoski for ThreeJS:
-http://stemkoski.github.io/Three.js/Shader-Glow.html
+Based on [gltf component](https://aframe.io/docs/0.6.0/components/gltf-model.html) from A-Frame using [GLTF loader](https://threejs.org/examples/#webgl_loader_gltf) from [three.js](https://threejs.org/).
 
 ## License
 
