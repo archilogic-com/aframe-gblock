@@ -22,6 +22,8 @@ gBlock component for [A-Frame](https://aframe.io) loading remixable [google bloc
 </body>
 ```
 
+#### [Run Example](https://codepen.io/tomas-polach/pen/NvJRJe/right?editors=1000)
+
 ## Want to make changes?
 
 ### Installation
