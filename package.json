@@ -1,11 +1,35 @@
 {
   "name": "aframe-gblock",
-  "description": "Aframe component loading google blocks content (inofficial)",
-  "repository": "tomas-polach/aframe-gblock",
-  "private": true,
+  "description": "Aframe component loading remixable google blocks models.",
+  "version": "1.0.0",
+  "homepage": "https://archilogic-com.github.io/aframe-gblock/",
+  "repository": "archilogic-com/aframe-gblock",
   "scripts": {
-    "dev": "rollup -c tasks/rollup.config.js --watch& lite-server -c tasks/lite-server.config.js"
+    "start": "rollup -c tasks/rollup.config.js --watch& lite-server -c tasks/lite-server.config.js"
   },
+  "license": "MIT",
+  "author": {
+    "name": "archilogic",
+    "email": "dev.rocks@3d.io",
+    "url": "https://3d.io"
+  },
+  "main": "dist/gblock.js",
+  "keywords": [
+    "aframe",
+    "3d",
+    "cardboard",
+    "components",
+    "oculus",
+    "vive",
+    "rift",
+    "vr",
+    "WebVR",
+    "WegGL",
+    "three",
+    "three.js",
+    "3D model",
+    "3d.io"
+  ],
   "dependencies": {},
   "devDependencies": {
     "lite-server": "^2.3.0",
