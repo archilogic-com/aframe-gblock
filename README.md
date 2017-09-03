@@ -1,6 +1,6 @@
-# A-Frame gBlock Component
+# gBlock Component for A-Frame
 
-gBlock component for [A-Frame](https://aframe.io) loading remixable [google blocks](https://vr.google.com) models. Built by [3d.io](https://3d.io).
+Component for [A-Frame](https://aframe.io) loading remixable [google blocks](https://vr.google.com) models. Built by [3d.io](https://3d.io).
 
 ## Demo
 
