@@ -17,7 +17,7 @@ gBlock component for [A-Frame](https://aframe.io) loading remixable [google bloc
 </head>
 <body>
   <a-scene>
-    <a-entity gblock="https://vr.google.com/objects/dVG0XJrpRJC"></entity>
+    <a-entity gblock="https://vr.google.com/objects/dVG0XJrpRJC"></a-entity>
   </a-scene>
 </body>
 ```
