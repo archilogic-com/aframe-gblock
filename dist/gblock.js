@@ -51,13 +51,19 @@
 
 	    var id = src.split('/').pop();
 
+	    // FIXME: Replace this with an official API URL once available
+	    // This API call is only needed to obtain the official glTF URL of a google block model.
+	    // The glTF itself is not being proxied and gets fetched from https://vr.google.com/downloads/* directly.
+	    // https://github.com/archilogic-com/aframe-gblock/issues/1
+	    // API server code: server/index.js
 	    fetch('https://gblock.herokuapp.com/get-gltf-url/' + id).then(function (response) {
+
 	      return response.text().then(function (body) {
 	        if (!response.ok) throw new Error('ERROR: ' + response.status + ' "' + body + '"')
 
 	        self.loader.load(body, function gltfLoaded (gltfModel) {
 	          self.model = gltfModel.scene || gltfModel.scenes[0];
-	          // FIXME: use original blocks shaders?
+	          // FIXME: adapt projection matrix in original shaders
 	          self.model.traverse(function (child) {
 	            if (child.material) child.material = new THREE.MeshPhongMaterial({ vertexColors: THREE.VertexColors });
 	          });
