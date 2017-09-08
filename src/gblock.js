@@ -47,6 +47,7 @@ AFRAME.registerComponent('gblock', {
     var id = src.split('/').pop()
 
     // FIXME: replace this with an official API once available
+    // https://github.com/archilogic-com/aframe-gblock/issues/1
     fetch('https://gblock.herokuapp.com/get-gltf-url/' + id).then(function (response) {
 
       return response.text().then(function (body) {
