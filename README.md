@@ -6,7 +6,7 @@ gBlock Component by [3d.io](https://3d.io) for [A-Frame](https://aframe.io) load
 
 #### [Live demo](https://archilogic-com.github.io/aframe-gblock/)
 
-![](static/screenshot2.jpg)
+![](static/screenshot3.png)
 
 ## Usage
 
