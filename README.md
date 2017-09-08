@@ -4,7 +4,7 @@ gBlock Component by [3d.io](https://3d.io) for [A-Frame](https://aframe.io) load
 
 ## Demo
 
-![](static/screenshot.jpg)
+![](static/screenshot2.jpg)
 
 #### [Live demo](https://archilogic-com.github.io/aframe-gblock/)
 
