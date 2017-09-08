@@ -17,7 +17,7 @@ export default {
 	output: [
 		{
 			format: 'iife',
-			banner: '// https://github.com/tomas-polach/aframe-gblock',
+			banner: '// https://github.com/archilogic-com/aframe-gblock',
 			name: 'gblock', // and global object name in browser environment
 			globals: {
 				THREE: 'THREE',

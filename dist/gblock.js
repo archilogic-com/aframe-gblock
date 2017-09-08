@@ -1,4 +1,4 @@
-// https://github.com/tomas-polach/aframe-gblock
+// https://github.com/archilogic-com/aframe-gblock
 (function () {
 	'use strict';
 
