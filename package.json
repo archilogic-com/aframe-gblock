@@ -5,7 +5,7 @@
   "homepage": "https://archilogic-com.github.io/aframe-gblock/",
   "repository": "archilogic-com/aframe-gblock",
   "scripts": {
-    "start": "rollup -c tasks/rollup.config.js --watch& lite-server -c tasks/lite-server.config.js"
+    "start": "rollup -c tasks/rollup.config.js --watch& lite-server -c tasks/lite-server.config.js",
     "start-api-server": "node server/index.js"
   },
   "license": "MIT",
