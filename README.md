@@ -52,7 +52,7 @@ On Mac OS X, it's recommended to use [Homebrew](http://brew.sh/) to install Node
 
 ## Acknowledgements
 
-Based on [gltf component](https://aframe.io/docs/0.6.0/components/gltf-model.html) from A-Frame using [GLTF loader](https://threejs.org/examples/#webgl_loader_gltf) from [three.js](https://threejs.org/).
+Based on [gltf component](https://aframe.io/docs/0.6.0/components/gltf-model.html) from [A-Frame](https://aframe.io/) using [GLTF loader](https://threejs.org/examples/#webgl_loader_gltf) from [three.js](https://threejs.org/).
 
 ## License
 
