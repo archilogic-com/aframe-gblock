@@ -58,10 +58,13 @@
 	    // API server code: server/index.js
 	    fetch('https://gblock.herokuapp.com/get-gltf-url/' + id).then(function (response) {
 
-	      return response.text().then(function (body) {
-	        if (!response.ok) throw new Error('ERROR: ' + response.status + ' "' + body + '"')
+	      return response.text().then(function (text) {
+	        if (!response.ok) throw new Error('ERROR: ' + response.status + ' "' + text + '"')
 
-	        self.loader.load(body, function gltfLoaded (gltfModel) {
+	        // load glTF model from original URL
+	        var gltfUrl = text;
+
+	        self.loader.load( gltfUrl, function gltfLoaded (gltfModel) {
 	          self.model = gltfModel.scene || gltfModel.scenes[0];
 	          // FIXME: adapt projection matrix in original shaders
 	          self.model.traverse(function (child) {
