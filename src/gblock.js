@@ -27,6 +27,15 @@ GBlockLoader.prototype = THREE.GLTFLoader.prototype
 
 // aframe module
 
+// check if gblock component has already been registered
+if (AFRAME.components.gblock) {
+  if (window.io3d) {
+    throw 'Error: gBlock component is already included in the 3dio.js library. Please remove this "<script>" tag.'
+  } else {
+    throw 'Error: gBlock component has been already registered in another script. Please remove this "<script>" tag.'
+  }
+}
+
 AFRAME.registerComponent('gblock', {
   schema: {type: 'asset'},
 
