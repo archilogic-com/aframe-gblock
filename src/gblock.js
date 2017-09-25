@@ -1,5 +1,5 @@
 import fsBase64 from './fragment-shader.glsl'
-import vsBase64 from './vector-shader.glsl'
+import vsBase64 from './vertex-shader.glsl'
 
 function GBlockLoader () {
 
