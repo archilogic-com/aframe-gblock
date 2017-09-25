@@ -44,20 +44,18 @@ AFRAME.registerComponent('gblock', {
 
     this.remove();
 
-    var id = src.split('/').pop()
-
     // FIXME: Replace this with an official API URL once available
     // This API call is only needed to obtain the official glTF URL of a google block model.
     // The glTF itself is not being proxied and gets fetched from https://vr.google.com/downloads/* directly.
     // https://github.com/archilogic-com/aframe-gblock/issues/1
     // API server code: server/index.js
-    fetch('https://gblock.herokuapp.com/get-gltf-url/' + id).then(function (response) {
+    fetch('https://us-central1-gblock-api.cloudfunctions.net/get-gltf-url/?url=' + src).then(function (response) {
 
-      return response.text().then(function (text) {
-        if (!response.ok) throw new Error('ERROR: ' + response.status + ' "' + text + '"')
+      return response.json().then(function (message) {
+        if (!response.ok) throw new Error('ERROR: ' + response.status + ' "' + message.message + '"')
 
         // load glTF model from original URL
-        var gltfUrl = text
+        var gltfUrl = message.gltfUrl
 
         self.loader.load( gltfUrl, function gltfLoaded (gltfModel) {
           self.model = gltfModel.scene || gltfModel.scenes[0];
