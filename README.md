@@ -12,7 +12,7 @@ gBlock Component by [3d.io](https://3d.io) for [A-Frame](https://aframe.io) load
 
 ```html
 <head>
-  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
   <script src="https://rawgit.com/archilogic-com/aframe-gblock/master/dist/gblock.js"></script>
 </head>
 <body>
