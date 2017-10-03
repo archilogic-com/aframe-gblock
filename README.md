@@ -4,7 +4,7 @@ gBlock Component by [3d.io](https://3d.io) for [A-Frame](https://aframe.io) load
 
 ## Demo
 
-#### [Live demo](http://gblock.3d.io)
+#### [Live demo](https://gblock.3d.io)
 
 ![](docs/screenshot3.png)
 
