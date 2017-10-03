@@ -101,16 +101,17 @@ function getGltfUrl (src) {
 
       // parse response
       return response.json().catch(function(error){
-        // handle server error
-        var errorMessage = 'ERROR parsing gblock API server response JSON.\nRequested Model: "' + src + '"\nError: "' + JSON.stringify(error) + '"'
-        return Promise.reject(errorMessage)
+        // handle JSON parsing error
+        console.log('ERROR parsing gblock API server response JSON.\nRequested Model: "' + src + '"\nError: "' + JSON.stringify(error) + '"')
+        return Promise.reject('gblock API server error. Check console for details.')
       }).then(function (message) {
         if (response.ok) {
           // return glTF URL
           return message.gltfUrl
         } else {
           // handle error response
-          return Promise.reject('ERROR loading gblock model "'+ src +'" : ' + response.status + ' "' + message.message + '"')
+          console.error('ERROR loading gblock model "'+ src +'" : ' + response.status + ' "' + message.message)
+          return Promise.reject(message.message)
         }
       })
 
