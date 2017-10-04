@@ -2,6 +2,8 @@
 
 gBlock Component by [3d.io](https://3d.io) for [A-Frame](https://aframe.io) loading remixable [google blocks](https://vr.google.com) models.
 
+**NOTE:** gblock is now included in the [3d.io library](https://3d.io/docs/api/1/aframe-components.html). This helps us to provide continuous improvements in performance, compatibility and reliability. While keeping this repo alive we recommend to use `https://dist.3d.io/3dio-js/1.x.x/3dio.min.js` in your projects.
+
 ## Demo
 
 #### [Live demo](https://gblock.3d.io)
@@ -13,7 +15,7 @@ gBlock Component by [3d.io](https://3d.io) for [A-Frame](https://aframe.io) load
 ```html
 <head>
   <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/archilogic-com/aframe-gblock/master/dist/gblock.js"></script>
+  <script src="https://dist.3d.io/3dio-js/1.x.x/3dio.min.js"></script>
 </head>
 <body>
   <a-scene>
