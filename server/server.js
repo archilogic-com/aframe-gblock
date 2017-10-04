@@ -22,6 +22,6 @@ app.use(express.static('docs'))
 app.use(express.static('dist'))
 
 // start server
-app.listen(process.env.PORT || 3005, function onServerStarted () {
-  console.log('Server started')
+var listener = app.listen(process.env.PORT || 3000, function onServerStarted () {
+  console.log('Server started on port '+listener.address().port)
 })
