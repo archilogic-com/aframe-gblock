@@ -1,3 +1,8 @@
+// TODO: Replace this with an official API once available
+// This API only fetches the official glTF URL of a google block model from google blocks website.
+// The glTF itself is not being proxied and gets fetched from https://vr.google.com/downloads/* directly.
+// https://github.com/archilogic-com/aframe-gblock/issues/1
+
 const request = require('request')
 const google = require('googleapis')
 const customsearch = google.customsearch('v1')
