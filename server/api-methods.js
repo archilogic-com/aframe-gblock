@@ -6,8 +6,16 @@ const customsearch = google.customsearch('v1')
 
 var SEARCH_CACHE_MAX_AGE = 1000 * 60 * 60 * 24 * 3
 var SEARCH_COUNTER_MAX = 5000 // max daily requests to google API
-var API_KEY = process.env.GOOGLE_CLOUD_API_KEY
-var CSE_ID = process.env.GOOGLE_CSE_ID // custom search engine ID: https://cse.google.com/cse/all
+var GOOGLE_API_KEY = process.env.GOOGLE_CLOUD_API_KEY
+var GOOGLE_CSE_ID = process.env.GOOGLE_CSE_ID // custom search engine (CSE) ID
+// Get your CSE ID from: https://cse.google.com/cse/all
+// - include the following pages in your CSE configs: >> "Basics" >> "Sites to search"
+// https://vr.google.com/objects/*
+// - exclude the following pages in your CSE configs: >> "Basics" >> "Sites to search" >> "Advanced" >> "Sites to exclude"
+// https://vr.google.com/objects/user*
+// https://vr.google.com/objects/category*
+// https://vr.google.com/objects/*/sources*
+// https://vr.google.com/objects/*/remixes*
 
 // shared
 
@@ -53,15 +61,13 @@ exports.search = function searchGoogleBlocksSite(req, res) {
     return
   }
 
-  // NOTE: exclude "https://vr.google.com/objects/*/sources" in your custom search engine configs: https://cse.google.com/cse/all
   customsearch.cse.list({
     // params infos:
     // https://developers.google.com/apis-explorer/?hl=en_GB#p/customsearch/v1/search.cse.list
     // https://github.com/google/google-api-nodejs-client/blob/master/apis/customsearch/v1.ts
     // https://developers.google.com/custom-search/docs/xml_results
-    auth: API_KEY,
-    cx: CSE_ID,
-    siteSearch: 'https://vr.google.com/objects/',
+    auth: GOOGLE_API_KEY,
+    cx: GOOGLE_CSE_ID,
     q: query,
     start: offset,
     num: limit // limit amount of search results
