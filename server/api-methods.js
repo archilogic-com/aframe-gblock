@@ -115,8 +115,15 @@ exports.getGltfUrl = function getGltfUrlFromGoogleBlocksSite (req, res) {
   var url = req.query.url
 
   // check params
-  if (!(req.query.url && req.query.url.substring(0,30) === 'https://vr.google.com/objects/')) {
-    res.status(400).send({ message: 'param "url" must start with "https://vr.google.com/objects/"' })
+  if (!req.query.url || req.query.url === '') {
+    res.status(400).send({ message: 'Please provide "url" query param in URL: i.e. "https://vr.google.com/objects/?url="' })
+    return
+  }
+  if (
+    req.query.url.substring(0,30) !== 'https://vr.google.com/objects/'
+    && req.query.url.substring(0,29) !== 'https://poly.google.com/view/'
+  ) {
+    res.status(400).send({ message: 'param "url" must start with "https://vr.google.com/objects/" or "https://poly.google.com/view/"' })
     return
   }
 
@@ -140,8 +147,8 @@ exports.getGltfUrl = function getGltfUrlFromGoogleBlocksSite (req, res) {
 
     var isRemixable = body.indexOf('Not remixable') === -1
     var objUrl =  new RegExp(`(${path}${id}\\/[-_a-zA-Z0-9]*\\/${id}_obj\\.zip)`).exec(body)
-    var gltfUrl = new RegExp(`(${path}${id}\\/[-_a-zA-Z0-9]*\\/model\\.gltf)`).exec(body)
-
+    var gltfUrl = new RegExp(`(${path}${id}\\/[-_a-zA-Z0-9]*\\/[-_a-zA-Z0-9%]*\\.gltf)`).exec(body)
+    
     if (!isRemixable) {
       res.status(405).send({ message: 'Model is not remixable' })
 
