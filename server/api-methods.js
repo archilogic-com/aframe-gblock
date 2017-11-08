@@ -127,6 +127,9 @@ exports.getGltfUrl = function getGltfUrlFromGoogleBlocksSite (req, res) {
     return
   }
 
+  // replace vr.google.com URLs (legacy support)
+  url = url.replace('https://vr.google.com/objects/', 'https://poly.google.com/view/')
+
   // remove trailing slash
   if (url[url.length-1] === '/') url = url.substring(0, url.length-1)
   // get id from url
