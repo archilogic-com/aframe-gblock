@@ -149,16 +149,16 @@ exports.getGltfUrl = function getGltfUrlFromGoogleBlocksSite (req, res) {
     var path = 'https:\\/\\/poly\\.google\\.com\\/downloads\\/'
 
     var isRemixable = body.indexOf('Not remixable') === -1
-    var objUrl =  new RegExp(`(${path}${id}\\/[-_a-zA-Z0-9]*\\/${id}_obj\\.zip)`).exec(body)
-    var gltfUrl = new RegExp(`(${path}${id}\\/[-_a-zA-Z0-9]*\\/[-_a-zA-Z0-9%]*\\.gltf)`).exec(body)
+    var objUrl =  new RegExp(`"(${path}${id}[^"]*_obj\\.zip)"`).exec(body)
+    var gltfUrl = new RegExp(`"(${path}${id}[^"]*\\.gltf)"`).exec(body)
     
     if (!isRemixable) {
       res.status(405).send({ message: 'Model is not remixable' })
 
     } else if (gltfUrl) {
       var result = {
-        gltfUrl: gltfUrl[0],
-        objUrl: objUrl ? objUrl[0] : undefined,
+        gltfUrl: gltfUrl[1],
+        objUrl: objUrl ? objUrl[1] : undefined,
         timestamp: Date.now()
       }
       gblockCache[id] = result
