@@ -1625,10 +1625,13 @@
 	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
 	 */
 	function isIndex(value, length) {
+	  var type = typeof value;
 	  length = length == null ? MAX_SAFE_INTEGER : length;
+
 	  return !!length &&
-	    (typeof value == 'number' || reIsUint.test(value)) &&
-	    (value > -1 && value % 1 == 0 && value < length);
+	    (type == 'number' ||
+	      (type != 'symbol' && reIsUint.test(value))) &&
+	        (value > -1 && value % 1 == 0 && value < length);
 	}
 
 	var _isIndex = isIndex;
@@ -2525,7 +2528,6 @@
 	var _memoizeCapped = memoizeCapped;
 
 	/** Used to match property names within property paths. */
-	var reLeadingDot = /^\./;
 	var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
 	/** Used to match backslashes in property paths. */
@@ -2540,11 +2542,11 @@
 	 */
 	var stringToPath = _memoizeCapped(function(string) {
 	  var result = [];
-	  if (reLeadingDot.test(string)) {
+	  if (string.charCodeAt(0) === 46 /* . */) {
 	    result.push('');
 	  }
-	  string.replace(rePropName, function(match, number, quote, string) {
-	    result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+	  string.replace(rePropName, function(match, number, quote, subString) {
+	    result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
 	  });
 	  return result;
 	});
@@ -3571,15 +3573,17 @@
 
 	}
 
-	var fragmentShader = {"text":"uniform vec3 u_color;\r\nuniform float u_metallic;\r\nuniform float u_roughness;\r\nuniform vec3 u_light0Pos;\r\nuniform vec3 u_light0Color;\r\nuniform vec3 u_light1Pos;\r\nuniform vec3 u_light1Color;\r\nuniform mat4 u_modelMatrix;\r\nuniform sampler2D u_reflectionCube;\r\nuniform sampler2D u_reflectionCubeBlur;","base64":"data:text/plain;base64,dW5pZm9ybSB2ZWMzIHVfY29sb3I7DQp1bmlmb3JtIGZsb2F0IHVfbWV0YWxsaWM7DQp1bmlmb3JtIGZsb2F0IHVfcm91Z2huZXNzOw0KdW5pZm9ybSB2ZWMzIHVfbGlnaHQwUG9zOw0KdW5pZm9ybSB2ZWMzIHVfbGlnaHQwQ29sb3I7DQp1bmlmb3JtIHZlYzMgdV9saWdodDFQb3M7DQp1bmlmb3JtIHZlYzMgdV9saWdodDFDb2xvcjsNCnVuaWZvcm0gbWF0NCB1X21vZGVsTWF0cml4Ow0KdW5pZm9ybSBzYW1wbGVyMkQgdV9yZWZsZWN0aW9uQ3ViZTsNCnVuaWZvcm0gc2FtcGxlcjJEIHVfcmVmbGVjdGlvbkN1YmVCbHVyOw=="};
+	var fragmentShader = {"text":"uniform vec3 u_color;\nuniform float u_metallic;\nuniform float u_roughness;\nuniform vec3 u_light0Pos;\nuniform vec3 u_light0Color;\nuniform vec3 u_light1Pos;\nuniform vec3 u_light1Color;\nuniform mat4 u_modelMatrix;\nuniform sampler2D u_reflectionCube;\nuniform sampler2D u_reflectionCubeBlur;","base64":"data:text/plain;base64,dW5pZm9ybSB2ZWMzIHVfY29sb3I7CnVuaWZvcm0gZmxvYXQgdV9tZXRhbGxpYzsKdW5pZm9ybSBmbG9hdCB1X3JvdWdobmVzczsKdW5pZm9ybSB2ZWMzIHVfbGlnaHQwUG9zOwp1bmlmb3JtIHZlYzMgdV9saWdodDBDb2xvcjsKdW5pZm9ybSB2ZWMzIHVfbGlnaHQxUG9zOwp1bmlmb3JtIHZlYzMgdV9saWdodDFDb2xvcjsKdW5pZm9ybSBtYXQ0IHVfbW9kZWxNYXRyaXg7CnVuaWZvcm0gc2FtcGxlcjJEIHVfcmVmbGVjdGlvbkN1YmU7CnVuaWZvcm0gc2FtcGxlcjJEIHVfcmVmbGVjdGlvbkN1YmVCbHVyOw=="};
 
-	var vertexShader = {"text":"varying vec3 v_normal;\r\nvarying vec3 v_position;\r\nvarying vec3 v_binormal;\r\nvarying vec3 v_tangent;\r\n","base64":"data:text/plain;base64,dmFyeWluZyB2ZWMzIHZfbm9ybWFsOw0KdmFyeWluZyB2ZWMzIHZfcG9zaXRpb247DQp2YXJ5aW5nIHZlYzMgdl9iaW5vcm1hbDsNCnZhcnlpbmcgdmVjMyB2X3RhbmdlbnQ7DQo="};
+	var vertexShader = {"text":"varying vec3 v_normal;\nvarying vec3 v_position;\nvarying vec3 v_binormal;\nvarying vec3 v_tangent;\n","base64":"data:text/plain;base64,dmFyeWluZyB2ZWMzIHZfbm9ybWFsOwp2YXJ5aW5nIHZlYzMgdl9wb3NpdGlvbjsKdmFyeWluZyB2ZWMzIHZfYmlub3JtYWw7CnZhcnlpbmcgdmVjMyB2X3RhbmdlbnQ7Cg=="};
 
 	// TODO: Replace placeholder shaders by original ones (requires fixing projection matrix)
 	// configs
 
 	var LEGACY_GLFT_V1_LOADER_URL = 'https://cdn.rawgit.com/mrdoob/three.js/r86/examples/js/loaders/GLTFLoader.js';
-	var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'https://gblock.3d.io/api/get-gltf-url/?url=';
+	var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'https://poly.googleapis.com/v1/assets/';
+	var API_KEY = '';/* ADD API KEY */
+
 	// for local development
 	// 1. uncomment the following line
 	// 2. start local server: npm run start
@@ -3610,10 +3614,11 @@
 	    var src = this.data;
 
 	    if (!src) { return; }
-
+	    var id = this.data.toString().substr(this.data.toString().lastIndexOf('/') + 1); // get GLTF id
+	    if (!id) { return; }
 	    this.remove();
 	    
-	    getGltfUrl(src).then(loadGblockModel).then(function onLoaded (gltfModel) {
+	    getGltfUrl(id).then(loadGblockModel).then(function onLoaded (gltfModel) {
 
 	      self.model = gltfModel.scene || gltfModel.scenes[0];
 	      self.model.animations = gltfModel.animations;
@@ -3641,41 +3646,41 @@
 
 	// private shared methods
 
-	// FIXME: Replace this with an official API URL once available
 	// This API call is only needed to obtain the official glTF URL of a google block model.
 	// The glTF itself is not being proxied and gets fetched from https://vr.google.com/downloads/* directly.
 	// https://github.com/archilogic-com/aframe-gblock/issues/1
 	// API server code: server/index.js
 	// try promise cache (could be in loading state)
-	function getGltfUrl (src) {
+	function getGltfUrl (id) {
+	  var url = GBLOCK_API_GET_OFFICIAL_GLTF_URL + id + '/?key=' + API_KEY;
 
 	  // try cache
-	  var getUrlPromise = promiseCache.get(src);
+	  var getUrlPromise = promiseCache.get(url);
 
 	  if (!getUrlPromise) {
 
-	    getUrlPromise = fetch(GBLOCK_API_GET_OFFICIAL_GLTF_URL + src).then(function (response) {
+	    getUrlPromise = fetch(url).then(function (response) {
 
 	      // parse response
 	      return response.json().catch(function(error){
 	        // handle JSON parsing error
-	        console.log('ERROR parsing gblock API server response JSON.\nRequested Model: "' + src + '"\nError: "' + JSON.stringify(error) + '"');
+	        console.log('ERROR parsing gblock API server response JSON.\nRequested Model: "' + url + '"\nError: "' + JSON.stringify(error) + '"');
 	        return Promise.reject('gblock API server error. Check console for details.')
-	      }).then(function (message) {
-	        if (response.ok) {
-	          // return glTF URL
-	          return message.gltfUrl
-	        } else {
-	          // handle error response
-	          console.error('ERROR loading gblock model "'+ src +'" : ' + response.status + ' "' + message.message);
-	          return Promise.reject(message.message)
+	      }).then(function (info) {
+	        console.log('info', info);
+	        if (info.error !== undefined) {
+	          return Promise.reject('gblock API server error: ' + info.error.message)
+	        }
+	        var format = info.formats.find( format => { return format.formatType === 'GLTF'; } );
+	        if ( format !== undefined ) {
+	          return format.root.url
 	        }
 	      })
 
 	    });
 
 	    // add to cache
-	    promiseCache.add(src, getUrlPromise);
+	    promiseCache.add(url, getUrlPromise);
 
 	  }
 

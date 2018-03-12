@@ -7,7 +7,9 @@ import vertexShader from './shaders/vertex-placeholder.glsl'
 // configs
 
 var LEGACY_GLFT_V1_LOADER_URL = 'https://cdn.rawgit.com/mrdoob/three.js/r86/examples/js/loaders/GLTFLoader.js'
-var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'https://gblock.3d.io/api/get-gltf-url/?url='
+var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'https://poly.googleapis.com/v1/assets/'
+var API_KEY = ''/* ADD API KEY */
+
 // for local development
 // 1. uncomment the following line
 // 2. start local server: npm run start
@@ -38,10 +40,11 @@ AFRAME.registerComponent('gblock', {
     var src = this.data
 
     if (!src) { return; }
-
+    var id = this.data.toString().substr(this.data.toString().lastIndexOf('/') + 1); // get GLTF id
+    if (!id) { return; }
     this.remove()
     
-    getGltfUrl(src).then(loadGblockModel).then(function onLoaded (gltfModel) {
+    getGltfUrl(id).then(loadGblockModel).then(function onLoaded (gltfModel) {
 
       self.model = gltfModel.scene || gltfModel.scenes[0]
       self.model.animations = gltfModel.animations
@@ -69,41 +72,41 @@ AFRAME.registerComponent('gblock', {
 
 // private shared methods
 
-// FIXME: Replace this with an official API URL once available
 // This API call is only needed to obtain the official glTF URL of a google block model.
 // The glTF itself is not being proxied and gets fetched from https://vr.google.com/downloads/* directly.
 // https://github.com/archilogic-com/aframe-gblock/issues/1
 // API server code: server/index.js
 // try promise cache (could be in loading state)
-function getGltfUrl (src) {
+function getGltfUrl (id) {
+  var url = GBLOCK_API_GET_OFFICIAL_GLTF_URL + id + '/?key=' + API_KEY;
 
   // try cache
-  var getUrlPromise = promiseCache.get(src)
+  var getUrlPromise = promiseCache.get(url)
 
   if (!getUrlPromise) {
 
-    getUrlPromise = fetch(GBLOCK_API_GET_OFFICIAL_GLTF_URL + src).then(function (response) {
+    getUrlPromise = fetch(url).then(function (response) {
 
       // parse response
       return response.json().catch(function(error){
         // handle JSON parsing error
-        console.log('ERROR parsing gblock API server response JSON.\nRequested Model: "' + src + '"\nError: "' + JSON.stringify(error) + '"')
+        console.log('ERROR parsing gblock API server response JSON.\nRequested Model: "' + url + '"\nError: "' + JSON.stringify(error) + '"')
         return Promise.reject('gblock API server error. Check console for details.')
-      }).then(function (message) {
-        if (response.ok) {
-          // return glTF URL
-          return message.gltfUrl
-        } else {
-          // handle error response
-          console.error('ERROR loading gblock model "'+ src +'" : ' + response.status + ' "' + message.message)
-          return Promise.reject(message.message)
+      }).then(function (info) {
+        console.log('info', info)
+        if (info.error !== undefined) {
+          return Promise.reject('gblock API server error: ' + info.error.message)
+        }
+        var format = info.formats.find( format => { return format.formatType === 'GLTF'; } );
+        if ( format !== undefined ) {
+          return format.root.url
         }
       })
 
     })
 
     // add to cache
-    promiseCache.add(src, getUrlPromise)
+    promiseCache.add(url, getUrlPromise)
 
   }
 
