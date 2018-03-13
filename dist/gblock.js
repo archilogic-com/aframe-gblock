@@ -3582,10 +3582,10 @@
 	var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'https://gblock.3d.io/api/get-gltf-url/?url=';
 	// for local development
 	// 1. uncomment the following line
+	var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'http://localhost:3000/api/get-gltf-url/?url=';
 	// 2. start local server: npm run start
 	// 3. compile aframe component: npm run build
 	// 4. go to http://localhost:3000
-	//var GBLOCK_API_GET_OFFICIAL_GLTF_URL = 'http://localhost:3000/api/get-gltf-url/?url='
 
 	// internals
 
