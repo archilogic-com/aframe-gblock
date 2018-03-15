@@ -146,7 +146,7 @@ exports.getGltfUrl = function getGltfUrlFromGoogleBlocksSite (req, res) {
     url: url
   }, function (error, response, body) {
 
-    var path = 'https:\\/\\/poly\\.google\\.com\\/downloads\\/'
+    var path = 'https:\\/\\/poly\\.googleusercontent\\.com\\/downloads\\/'
 
     var isRemixable = body.indexOf('Not remixable') === -1
     var objUrl =  new RegExp(`"(${path}${id}[^"]*_obj\\.zip)"`).exec(body)
