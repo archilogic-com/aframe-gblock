@@ -1,6 +1,6 @@
 # gBlock Component for A-Frame
 
-Loading [Google Poly](https://poly.google.com) models from https://poly.google.com in [A-Frame](https://aframe.io). Maintained by [3d.io](https://3d.io).
+[A-Frame](https://aframe.io) Component loading [Google Poly](https://poly.google.com) models from https://poly.google.com. Maintained by [3d.io](https://3d.io).
 
 ## Demo
 
