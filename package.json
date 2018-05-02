@@ -1,7 +1,7 @@
 {
   "name": "aframe-gblock",
   "description": "Aframe component loading remixable google blocks models.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://archilogic-com.github.io/aframe-gblock/",
   "repository": "archilogic-com/aframe-gblock",
   "scripts": {
@@ -15,7 +15,7 @@
     "url": "https://3d.io"
   },
   "main": "dist/gblock.js",
-  "files": ["dist"],
+  "files": ["dist", "README.md"],
   "keywords": [
     "aframe",
     "3d",
