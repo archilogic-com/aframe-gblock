@@ -15,6 +15,7 @@
     "url": "https://3d.io"
   },
   "main": "dist/gblock.js",
+  "files": ["dist"],
   "keywords": [
     "aframe",
     "3d",
