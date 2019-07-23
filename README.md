@@ -1,10 +1,10 @@
 # gBlock Component for A-Frame
 
-[A-Frame](https://aframe.io) Component loading [Google Poly](https://poly.google.com) models from https://poly.google.com. Maintained by [3d.io](https://3d.io).
+[A-Frame](https://aframe.io) Component loading [Google Poly](https://poly.google.com) models from https://poly.google.com. Maintained by [archilogic.com](https://archilogic.com).
 
 ## Demo
 
-#### [Live demo](https://gblock.3d.io)
+#### [Live demo](http://project.archilogic.com/aframe-gblock/)
 
 ![](docs/screenshot3.png)
 
