@@ -35,7 +35,7 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.15.5",
-    "googleapis": "^22.1.0",
+    "googleapis": "^59.0.0",
     "request": "^2.82.0"
   },
   "devDependencies": {
